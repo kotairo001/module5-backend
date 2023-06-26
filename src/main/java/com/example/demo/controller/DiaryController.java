@@ -19,10 +19,12 @@ import java.util.Optional;
 public class DiaryController {
     @Autowired
     private IDiaryService diaryService;
+
     @GetMapping("/count")
     public ResponseEntity<?> getDiaryNumber() {
-        return new ResponseEntity<>(diaryService.findAll().size(), HttpStatus.OK) ;
+        return new ResponseEntity<>(diaryService.findAll().size(), HttpStatus.OK);
     }
+
     @GetMapping("/page")
     public ResponseEntity<?> pageDiary(Pageable pageable) {
         return new ResponseEntity<>(diaryService.findAll(pageable), HttpStatus.OK);

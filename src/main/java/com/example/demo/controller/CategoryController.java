@@ -63,24 +63,25 @@ public class CategoryController {
 //        if (!category.getAvatar().equalsIgnoreCase(category1.get().getAvatar())) {
 //            category.setId(category1.get().getId());
 //        }
-        if(!category.getName().equalsIgnoreCase(category1.get().getName())){
+        if (!category.getName().equalsIgnoreCase(category1.get().getName())) {
             if (categoryService.existsByName(category.getName())) {
                 return new ResponseEntity<>(new ResponMessage("name_existed"), HttpStatus.OK);
             }
         }
-        if(category.getName().equalsIgnoreCase(category1.get().getName())){
-            return new ResponseEntity<>(new ResponMessage("no_change"),HttpStatus.OK);
+        if (category.getName().equalsIgnoreCase(category1.get().getName())) {
+            return new ResponseEntity<>(new ResponMessage("no_change"), HttpStatus.OK);
         }
         category.setId(category1.get().getId());
         categoryService.save(category);
-        return new ResponseEntity<>(new ResponMessage("update_success"),HttpStatus.OK);
+        return new ResponseEntity<>(new ResponMessage("update_success"), HttpStatus.OK);
 
     }
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCategory (@PathVariable Long id){
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
         Optional<Category> category = categoryService.findById(id);
         System.out.println(category);
-        if(!category.isPresent()){
+        if (!category.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             categoryService.deleteById(id);

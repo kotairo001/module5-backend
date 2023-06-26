@@ -12,8 +12,11 @@ public interface IDiaryService extends IGenericService<Diary> {
     Boolean existsByTitle(String title);
 
     List<Category> findCategoryByDiaryId(Long id);
+
     List<Diary> findDiariesByTitleContains(String title);
+
     List<Diary> findAllByUserId(Long id);
+
     Long countDiaries();
 
 }

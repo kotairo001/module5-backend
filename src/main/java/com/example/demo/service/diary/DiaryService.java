@@ -15,20 +15,22 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class DiaryService implements IDiaryService {
     @Autowired
     private UserDetailService userDetailService;
     @Autowired
     private IDiaryRepository diaryRepository;
+
     @Override
     public List<Diary> findAll() {
-       return diaryRepository.findAll();
+        return diaryRepository.findAll();
     }
 
     @Override
     public void save(Diary diary) {
-        User user =  userDetailService.getCurrentUser();
+        User user = userDetailService.getCurrentUser();
         diary.setUser(user);
         diaryRepository.save(diary);
     }

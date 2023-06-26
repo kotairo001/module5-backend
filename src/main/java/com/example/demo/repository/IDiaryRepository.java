@@ -13,12 +13,15 @@ import java.util.List;
 @Repository
 public interface IDiaryRepository extends JpaRepository<Diary, Long> {
     Boolean existsByTitle(String title);
+
     @Query("select dr.categoryList from Diary as dr " +
             "where dr.id = :id")
-    List<Category> findCategoryByDiaryId (@Param("id") Long id);
+    List<Category> findCategoryByDiaryId(@Param("id") Long id);
+
     List<Diary> findDiariesByTitleContains(String title);
+
     List<Diary> findAllByUserId(Long id);
+
     @Query("select count(dr.title) from Diary as dr")
     Long countDiaries();
-
 }

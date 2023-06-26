@@ -23,13 +23,14 @@ public class CategoryService implements ICategoryService {
     public Boolean existsByName(String categoryName) {
         return categoryRepository.existsByName(categoryName);
     }
+
     @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
     @Override
-    public void save(Category category){
+    public void save(Category category) {
         User user = userDetailService.getCurrentUser();
         category.setUser(user);
         categoryRepository.save(category);
